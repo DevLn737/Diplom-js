@@ -4,6 +4,7 @@ import cors from 'cors';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
+import { authRouter } from './routes/authRoutes'
 
 
 // Высрать сначало всё сюда, а потом как будто умный разбить по папочкам
@@ -23,11 +24,8 @@ app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-// Middleware
-
 // Маршруты
-
-
+app.use('/auth', authRouter);
 
 
 

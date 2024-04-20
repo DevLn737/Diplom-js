@@ -1,0 +1,22 @@
+import { Request, Response, NextFunction } from "express";
+import { StatusCodes } from "http-status-codes";
+import { verifyToken } from "../helpers/jwtHelper";
+
+export function authMiddleware(req: Request, res: Response, next: NextFunction) {
+    try {
+        // Получаем jwt token из заголовка Authorization
+        const token = req.headers?.authorization.split(" ")[1];
+
+        // Проверяем что токен есть
+        if (!token) return res.status(StatusCodes.UNAUTHORIZED).json({ msg: "Неавторизованный доступ" })
+        // Проверяем токен и получаем декодированный токен в случае успеха
+        const decoded = verifyToken(token)
+        // Прикрепляем токен к request
+        req.userId = decoded.sub
+
+        next()
+    } catch (error) {
+        console.error(error);
+        res.status(StatusCodes.UNAUTHORIZED).json({ msg: "Ошибка аутентификации" })
+    }
+}
