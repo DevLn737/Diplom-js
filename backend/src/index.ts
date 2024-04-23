@@ -5,7 +5,7 @@ import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 import { authRouter } from './routes/authRoutes'
-
+import { stableDiffusionRouter } from './routes/stableDiffusionRoutes';
 
 // Высрать сначало всё сюда, а потом как будто умный разбить по папочкам
 // Настройки дб
@@ -26,6 +26,7 @@ app.use(bodyParser.json());
 
 // Маршруты
 app.use('/auth', authRouter);
+app.use('/sd', stableDiffusionRouter)
 
 
 

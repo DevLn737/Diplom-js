@@ -1,0 +1,5 @@
+exploding breaking white broken marble statue with cracks of a person with flowers bursting from inside
+Negative prompt: [disfigured, poorly drawn], [bad : wrong] anatomy, [extra | missing | floating | disconnected] limb, mutated, blurry
+Steps: 22, Sampler: Euler a, CFG scale: 7, Seed: 2284627472, Size: 768x768, Model hash: bcce73a08e, Model: Deliberate_v6,
+Denoising strength: 0.36, ENSD: 31337, Hypertile U-Net: True, Hires sampler: DPM++ 2M Karras, Hires upscale: 2, Hires steps: 8,
+Hires upscaler: 4x_NMKD-Siax_200k,

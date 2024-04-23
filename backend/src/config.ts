@@ -10,4 +10,5 @@ dotenv.config({ path: path.resolve(BASEDIR, ".env") });
 export default class Config {
     public static readonly JWT_SECRET: string = process.env.JWT_SECRET;
     public static readonly DB_URI: string = process.env.DB_URI;
+    public static readonly SD_BASE_URL: string = process.env.SD_BASE_URL;
 }
