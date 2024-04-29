@@ -1,9 +1,8 @@
 import Config from '../config'
 import axios from 'axios';
 
-const BASEURL = Config.SD_BASE_URL
 
-export interface ITxt2ImgRequest {
+export interface ICreateImageRequest {
     prompt?: string;
     negative_prompt?: string;
     sampler_name?: string;
@@ -23,24 +22,23 @@ export interface ITxt2ImgRequest {
     hr_negative_prompt?: string;
     hr_scheduler?: string;
 }
-export interface ITxt2ImgResponse {
+export interface ICreateImageResponse {
     images: string[];
     parameters: object;
     info: string;
 }
 
 
-export async function txt2imgRequest(payload: ITxt2ImgRequest): Promise<ITxt2ImgResponse> {
-    const finalPayload = createTxt2ImgPayload({ ...payload });
-    const response: ITxt2ImgResponse = await axios.post(BASEURL + "/sdapi/v1/txt2img", finalPayload)
+export async function createImage(payload: ICreateImageRequest): Promise<ICreateImageResponse> {
+    const finalPayload = createDefaultPayload({ ...payload });
+    const response: ICreateImageResponse = await axios.post(Config.SD_BASE_URL + "/sdapi/v1/txt2img", finalPayload)
     return response
 }
 
 
 
 // Функция для создания стандартного payload для запроса txt2img
-// TODO: Вынести в отдельный конфиг payload
-function createTxt2ImgPayload({
+function createDefaultPayload({
     prompt = '',
     negative_prompt = '[disfigured, poorly drawn], [bad : wrong] anatomy, [extra | missing | floating | disconnected] limb, mutated, blurry',
     sampler_name = 'Euler a',
@@ -58,7 +56,7 @@ function createTxt2ImgPayload({
     hr_prompt = prompt,
     hr_negative_prompt = negative_prompt,
     hr_scheduler = 'Karras'
-}: Partial<ITxt2ImgRequest> = {}): ITxt2ImgRequest {
+}: Partial<ICreateImageRequest> = {}): ICreateImageRequest {
     return {
         prompt,
         negative_prompt,

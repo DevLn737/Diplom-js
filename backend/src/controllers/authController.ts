@@ -1,4 +1,4 @@
-import { createUser, getUserByEmail, getUserById, getUserByUsername, UserModel } from '../models/User';
+import { createUser, getUserByEmail, getUserById, getUserByUsername } from '../models/User';
 import { verifyPassword, hashPassword } from "../helpers/passwordHelper"
 import { generateToken } from "../helpers/jwtHelper"
 import { StatusCodes } from 'http-status-codes'

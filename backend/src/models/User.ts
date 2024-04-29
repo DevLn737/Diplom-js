@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { isEmail } from "validator"
-// TODO: типизировать
+
 const UserSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -12,12 +12,17 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
     email: {
         type: String,
         required: true,
         unique: true,
         trim: true,
         lowercase: true,
+        validator: isEmail
     },
     images: {
         type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Image' }],

@@ -1,12 +1,10 @@
 import mongoose from "mongoose";
 
-
 // name: Название изображения(рандомное имя)
 // url : Путь до изображения(Если сохранили в профиль)
 // description: Общая информация о генерации(пример: prompt, neg-prompt)
 // tags: "Теги, нужны для поиска"
 // owner: id пользователя, которому принадлежит изображение (required пока что опционально)
-// TODO: типизировать
 const ImageSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -20,10 +18,6 @@ const ImageSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    isAdmin: {
-        type: Boolean,
-        default: false
-    },
     createdAt: {
         type: Date,
         default: Date.now
@@ -32,6 +26,7 @@ const ImageSchema = new mongoose.Schema({
         type: [String],
         required: true,
         lowercase: true,
+        default: []
     },
     owner: {
         type: mongoose.Types.ObjectId,

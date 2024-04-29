@@ -1,17 +1,17 @@
-import { Router, Request, Response } from "express";
-import * as authController from '../controllers/authController'
+import { Router } from "express";
 import { authMiddleware } from "../middlewares/authMiddleware"
 import { registerValidation, loginValidation } from '../validations'
 import handleValidationErrors from '../middlewares/handleValidationErrors';
+import * as authController from '../controllers/authController'
 
-export const authRouter = Router()
+const router = Router()
 
-authRouter.post("/register", registerValidation, handleValidationErrors, authController.register);
-authRouter.post("/login", loginValidation, handleValidationErrors, authController.login);
-authRouter.post("/me", authMiddleware, authController.me);
-// Реализуется на клиенте
-// authRouter.post("/logout", authController.logout);
+router.post("/register", registerValidation, handleValidationErrors, authController.register);
+router.post("/login", loginValidation, handleValidationErrors, authController.login);
+router.get("/me", authMiddleware, authController.me);
 
+
+export default router
 
 
 
