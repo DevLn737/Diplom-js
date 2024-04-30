@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken'
-import { UserModel } from '../models/User'
 import Config from '../config'
+import { UserModel } from '../models/User'
+
 
 // sub: подрузамевается _id пользователя в mongodb
 // exp: unix timestamp в миллисекундах
