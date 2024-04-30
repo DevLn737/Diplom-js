@@ -1,6 +1,6 @@
 import { createUser, getUserByEmail, getUserById, getUserByUsername } from '../models/User';
-import { verifyPassword, hashPassword } from "../helpers/passwordHelper"
-import { generateToken } from "../helpers/jwtHelper"
+import { verifyPassword, hashPassword } from "../helpers/cryptoHelpers"
+import { generateToken } from "../helpers/jwtHelpers"
 import { StatusCodes } from 'http-status-codes'
 import { Request, Response } from "express";
 

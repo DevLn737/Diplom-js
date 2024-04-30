@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
-import { verifyToken } from "../helpers/jwtHelper";
+import { verifyToken } from "../helpers/jwtHelpers";
 
 export function authMiddleware(req: Request, res: Response, next: NextFunction) {
     try {

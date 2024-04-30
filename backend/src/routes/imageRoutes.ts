@@ -2,15 +2,19 @@ import { Router } from "express";
 import * as imageController from '../controllers/imageController'
 import { authMiddleware } from "../middlewares/authMiddleware"
 import handleValidationErrors from '../middlewares/handleValidationErrors';
-import { imageGenerationValidation } from '../validations';
+import { imageGenerationValidation, imageDataValidation } from '../validations';
 
 export const router = Router();
 
 // Генерируем изображение на основе текстового промта
 router.post('/generate', authMiddleware, imageGenerationValidation, handleValidationErrors, imageController.generateImage);
-// Получаем посты комьюнити
-// router.get('/community', imageController.txt2img);
-// Создаём пост для комьюнити
-// router.post('/community', authMiddleware, txt2imgValidation, handleValidationErrors, imageController.txt2img);
+
+// Общественная галерея
+router.get('/community', imageController.getCommunityImages);
+router.post('/community', authMiddleware, imageDataValidation, handleValidationErrors, imageController.postCommunityImage);
+
+// Личная галерея
+router.post('/save');
+router.get('/user');
 
 export default router

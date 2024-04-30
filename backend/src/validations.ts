@@ -16,3 +16,11 @@ export const imageGenerationValidation = [
     body("prompt", "Укажите корректный prompt").isString(),
     body("enable_hr", "enable_hr должно быть boolean значением").isBoolean().optional(),
 ]
+
+
+export const imageDataValidation = [
+    body('image', 'Некорректный формат изображения').isBase64(),
+    body("description", "Укажите корректное описание").isString(),
+    // До нормальной реализации системы тегов
+    body("tags", "Укажите корректные тег(и)").isArray().default([]).optional(),
+]
