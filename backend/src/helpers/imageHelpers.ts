@@ -1,4 +1,3 @@
-import axios from 'axios';
 import Config from '../config'
 
 
@@ -32,7 +31,15 @@ export interface ICreateImageResponse {
 
 export async function createImage(payload: ICreateImageRequest): Promise<ICreateImageResponse> {
     const finalPayload = createDefaultPayload({ ...payload });
-    const response: ICreateImageResponse = await axios.post(Config.SD_BASE_URL + "/sdapi/v1/txt2img", finalPayload)
+    const response: ICreateImageResponse = await fetch(Config.SD_BASE_URL + "/sdapi/v1/txt2img", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(finalPayload)
+    }).then(response => response.json());
+
+
     return response
 }
 

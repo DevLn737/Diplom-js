@@ -23,7 +23,7 @@ export const generateImage = async (req: Request, res: Response) => {
             enable_hr
         });
 
-        const image = response.data.images[0];
+        const image = response.images[0];
         res.status(StatusCodes.OK).json({ image });
     } catch (error) {
         console.error(error);
@@ -34,14 +34,14 @@ export const generateImage = async (req: Request, res: Response) => {
 
 export const getCommunityImages = async (req: Request, res: Response) => {
     try {
-        const posts = await ImageModel.find({ type: ImageType.Public });
+        const posts = await ImageModel.find({ type: ImageType.Public }).populate({ path: 'owner', select: 'username' });
         res.status(StatusCodes.OK).json(posts)
     } catch (error) {
         console.log(error);
         res.sendStatus(StatusCodes.INTERNAL_SERVER_ERROR);
     }
-
 }
+
 export const postCommunityImage = async (req: Request, res: Response) => {
     try {
         const { description, tags, image } = req.body;
@@ -64,12 +64,13 @@ export const postCommunityImage = async (req: Request, res: Response) => {
 
 
         const savePath = path.resolve(directoryPath, md5Hash + ".png");
+        const relativePath = path.relative(path.resolve(BASEDIR, "public"), savePath);
         await fs.writeFile(savePath, image, 'base64');
 
 
         const newImage = new ImageModel({
             name: md5Hash,
-            url: savePath,
+            url: "http://localhost:4000/" + relativePath,
             description,
             tags,
             type: ImageType.Public,
@@ -78,7 +79,7 @@ export const postCommunityImage = async (req: Request, res: Response) => {
         await newImage.save();
 
 
-        return res.status(StatusCodes.OK).json({ image: newImage });
+        res.status(StatusCodes.OK).json({ image: newImage });
     } catch (error) {
         console.error(error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ err: error.status || 'Что-то пошло нет так' });
