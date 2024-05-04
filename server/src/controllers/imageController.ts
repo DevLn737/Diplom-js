@@ -10,17 +10,19 @@ import { getDateNow } from '../helpers/dateHelpers'
 
 interface IRequestPayload {
     prompt: string,
+    negative_prompt: string,
     enable_hr: boolean,
 }
 
 export const generateImage = async (req: Request, res: Response) => {
     try {
-        const { prompt, enable_hr }: IRequestPayload = req.body;
+        const { prompt, enable_hr, negative_prompt }: IRequestPayload = req.body;
 
         // Я не знаю, как описать возвращаемую структуру из ответа sd.
         const response: any = await createImage({
             prompt,
-            enable_hr
+            enable_hr,
+            negative_prompt
         });
 
         const image = response.images[0];
