@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref } from "vue";
-
+import axios from "axios";
 import GallerySearchField from "@/components/GallerySearchField.vue";
 import GalleryGrid from "@/components/GalleryGrid.vue";
 import Loader from "@/components/Loader.vue";
@@ -35,17 +35,11 @@ onMounted(async () => {
     loading.value = true;
 
     try {
-      const response = await fetch(
-        "http://localhost:4000/api/images/community",
-        {
-          method: "GET",
-          "Content-Type": "application/json"
-        }
-      );
+      const response = await axios.get("http://localhost:4000/api/images/community", { headers: { "Content-Type": "application/json" } });
 
-      if (response.ok) {
-        const result = await response.json();
-        allPosts.value = result.reverse();
+      if (response.status === 200) {
+        const result = await response;
+        allPosts.value = result.data.reverse();
       }
     } catch (error) {
       console.error(error);

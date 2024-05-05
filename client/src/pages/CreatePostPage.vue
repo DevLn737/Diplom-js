@@ -5,6 +5,7 @@ import Loader from "@/components/Loader.vue";
 import { preview } from "@/assets/index.js";
 import { downloadImage, getRandomPrompt } from "@/utils/index.js";
 import router from "@/router/index.js";
+import axios from "axios";
 
 
 const model = ref("Deliberate v6(SFW)");
@@ -25,21 +26,25 @@ const generateImage = async () => {
       isGenerated.value = true;
       // Отправляем на backend стандартный негатив, если поле пустое
       const negative = negativePrompt.value ? negativePrompt.value : "[disfigured, poorly drawn], [bad : wrong] anatomy, [extra | missing | floating | disconnected] limb, mutated, blurry";
-      const response = await fetch(
-        "http://localhost:4000/api/images/generate",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-          },
-          body: JSON.stringify({ prompt: prompt.value, negative_prompt: negative })
-        }
+
+      // const response = await fetch(
+      //   "http://localhost:4000/api/images/generate",
+      //   {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       Authorization: `Bearer ${token}`
+      //     },
+      //     body: JSON.stringify({ prompt: prompt.value, negative_prompt: negative })
+      //   }
+      // );
+      const response = await axios.post("http://localhost:4000/api/images/generate",
+        JSON.stringify({ prompt: prompt.value, negative_prompt: negative }),
+        { headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` } }
       );
 
-      const data = await response.json();
 
-      image.value = `data:image/png;base64,${data.image}`;
+      image.value = `data:image/png;base64,${response.data.image}`;
     } catch (error) {
       console.error(error);
     } finally {
@@ -62,20 +67,25 @@ const handleSubmit = async () => {
     loading.value = true;
 
     try {
-      const response = await fetch(
+      // const response = await fetch(
+      //   "http://localhost:4000/api/images/community",
+      //   {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       Authorization: `Bearer ${token}`
+      //     },
+      //     body: JSON.stringify({
+      //       description: prompt.value,
+      //       // Удаляем метаданные
+      //       image: image.value.split(",")[1]
+      //     })
+      //   }
+      // );
+      await axios.post(
         "http://localhost:4000/api/images/community",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-          },
-          body: JSON.stringify({
-            description: prompt.value,
-            // Удаляем метаданные
-            image: image.value.split(",")[1]
-          })
-        }
+        JSON.stringify({ description: prompt.value, image: image.value.split(",")[1] }),
+        { headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` } }
       );
 
       console.log("Пост успешно опубликован");

@@ -4,6 +4,7 @@ import { initFlowbite } from "flowbite";
 import { RouterView } from "vue-router";
 import TheHeader from "@/components/TheHeader.vue";
 
+
 onMounted(() => {
   // Инициализация flowbite.js
   initFlowbite();
