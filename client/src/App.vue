@@ -2,12 +2,28 @@
 import { onMounted } from "vue";
 import { initFlowbite } from "flowbite";
 import { RouterView } from "vue-router";
+import { useAuthStore } from "@/stores/auth.store.js";
+import axios from "axios";
 import TheHeader from "@/components/TheHeader.vue";
 
+const authStore = useAuthStore();
 
-onMounted(() => {
+onMounted(async () => {
   // Инициализация flowbite.js
   initFlowbite();
+
+  axios.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      if (error.response.status === 401 || error.response.status === 403) {
+        // Если пользователь не авторизован, или закончился срок токена, выкидываем из системы
+        authStore.logout();
+      }
+      return Promise.reject(error);
+    }
+  );
 });
 </script>
 

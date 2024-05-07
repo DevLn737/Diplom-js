@@ -35,11 +35,10 @@ onMounted(async () => {
     loading.value = true;
 
     try {
-      const response = await axios.get("http://localhost:4000/api/images/community", { headers: { "Content-Type": "application/json" } });
+      const response = await axios.get("images/community");
 
       if (response.status === 200) {
-        const result = await response;
-        allPosts.value = result.data.reverse();
+        allPosts.value = response.data.reverse();
       }
     } catch (error) {
       console.error(error);

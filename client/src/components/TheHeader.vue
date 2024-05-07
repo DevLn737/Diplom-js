@@ -1,10 +1,6 @@
 <script setup>
 import { RouterLink } from "vue-router";
 import { logo } from "@/assets";
-
-import { useAuthStore } from "@/stores/auth.store.js";
-
-const authStore = useAuthStore();
 </script>
 
 <template>
