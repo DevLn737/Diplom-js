@@ -1,5 +1,5 @@
 <script setup>
-import GalleryCard from "@/components/GalleryCard.vue";
+import GalleryCard from "@/components/HomeGalleryCard.vue";
 
 defineProps({
   posts: {

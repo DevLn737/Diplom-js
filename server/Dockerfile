@@ -12,6 +12,6 @@ FROM node:20.12.2-alpine
 WORKDIR /server
 COPY --from=builder /server/dist ./dist
 COPY package.json ./
-RUN npm install --only=production
+RUN npm install --production --only=production --omit=dev
 EXPOSE 4000
 CMD ["node", "./dist/index.js"]

@@ -1,8 +1,9 @@
 <script setup>
-import Gallery from "@/components/Gallery.vue";
+import Gallery from "@/components/HomeGallery.vue";
 </script>
 
 <template>
+
   <section class="mx-auto max-w-7xl">
     <div>
       <h1 class="text-[32px] font-extrabold text-[#222328] dark:text-gray-100">
@@ -16,12 +17,8 @@ import Gallery from "@/components/Gallery.vue";
       </p>
     </div>
     <div class="mt-10">
-      <Gallery />
+      <Gallery/>
     </div>
   </section>
 
 </template>
-
-<style scoped>
-
-</style>
