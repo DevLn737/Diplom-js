@@ -1,8 +1,8 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import axios from "axios";
-import GallerySearchField from "@/components/HomeGallerySearchField.vue";
-import GalleryGrid from "@/components/HomeGalleryGrid.vue";
+import GallerySearchField from "@/components/GallerySearchField.vue";
+import GalleryGrid from "@/components/GalleryGrid.vue";
 import Loader from "@/components/Loader.vue";
 
 

@@ -1,6 +1,7 @@
 <script setup>
 import axios from "axios";
 import {ref} from "vue";
+import router from "@/router/index.js";
 import StableDiffusionPromptFields from "@/components/StableDiffusionPromptFields.vue";
 import StableDiffusionControlPanel from "@/components/StableDiffusionControlPanel.vue";
 import {useStableDiffusionStore} from "@/stores/stableDiffusion.store.js";
@@ -9,28 +10,30 @@ import {preview} from "@/assets/index.js";
 import {getToken} from "@/utils/auth.js";
 import {downloadImage} from "@/utils/index.js";
 
+
 const stableDiffusionStore = useStableDiffusionStore();
 
 const token = getToken()
 const loading = ref(false)
 
 const handleDownloadImage = () => {
-  stableDiffusionStore.image ? downloadImage(prompt.value, stableDiffusionStore.image) : alert("Сначала сгенерируйте изображения для скачивания");
+  stableDiffusionStore.image ? downloadImage(stableDiffusionStore.prompt, stableDiffusionStore.image) : alert("Сначала сгенерируйте изображения для скачивания");
 };
 
 const handleSubmit = async () => {
-  if (prompt.value && stableDiffusionStore.image) {
+  if (stableDiffusionStore.prompt && stableDiffusionStore.image) {
     loading.value = true;
 
     try {
       await axios.post(
           "images/community",
-          JSON.stringify({description: prompt.value, image: image.value.split(",")[1]}),
+          JSON.stringify({description: stableDiffusionStore.prompt, image: stableDiffusionStore.image.split(",")[1]}),
           {headers: {Authorization: `Bearer ${token}`}}
       );
 
+
       console.log("Пост успешно опубликован");
-      await router.push("/");
+      await router.push({name: 'home'});
     } catch (error) {
       console.error(error);
     } finally {

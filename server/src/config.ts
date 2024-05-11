@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 
 // Базовая директория backend
 export const BASEDIR = path.resolve(__dirname, '../');
-dotenv.config({path: path.resolve(BASEDIR, ".env")});
+dotenv.config({path: path.resolve(BASEDIR, ".env.development.local")});
 
 
 export default class Config {
