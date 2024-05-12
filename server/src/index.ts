@@ -19,11 +19,14 @@ mongoose.connect(`mongodb://${Config.DB_HOST}:${Config.DB_PORT}/${Config.DB_NAME
 const port = 4000;
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: '*',
+    credentials: true
+}));
 app.use(morgan('common'));
 app.use(compression());
 app.use(cookieParser());
-app.use(express.json({limit: '50mb',}));
+app.use(express.json({ limit: '50mb', }));
 app.use(bodyParser.json());
 app.use(express.static(Config.staticDir));
 

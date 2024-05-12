@@ -6,6 +6,10 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
     try {
         // Получаем jwt token из заголовка Authorization
         // ! Может прилететь просто undefined, необходимо обработать
+        console.log(req.headers.authorization);
+        
+        if (req.headers?.authorization === undefined) return res.status(StatusCodes.UNAUTHORIZED).json({ msg: "Ошибка аутентификации" })
+            
         const token = req.headers?.authorization.split(" ")[1] == "undefined" || !req.headers?.authorization ? null : req.headers?.authorization.split(" ")[1];
 
         // Проверяем что токен есть

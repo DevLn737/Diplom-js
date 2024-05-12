@@ -12,6 +12,7 @@ services:
       - mongodb
     env_file:
       - ./server/.env
+    container_name: server
 
   client:
     build:
@@ -20,9 +21,11 @@ services:
     restart: on-failure
     ports:
       - "80:80"
+    container_name: client
 
   mongodb:
-    image: mongo:latest
+    image: mongo:4.4.29
     restart: on-failure
     ports:
       - "27017:27017"
+    container_name: mongodb

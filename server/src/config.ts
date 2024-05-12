@@ -10,6 +10,7 @@ dotenv.config({path: path.resolve(BASEDIR, ".env.development.local")});
 export default class Config {
     public static readonly JWT_SECRET: string = process.env.JWT_SECRET;
     public static readonly SD_BASE_URL: string = process.env.SD_BASE_URL;
+    public static readonly LLAMA_BASE_URL: string = process.env.LLAMA_BASE_URL;
     // DATABASE
     public static readonly DB_NAME: string = process.env.DB_NAME;
     public static readonly DB_HOST: string = process.env.DB_HOST || 'mongodb';

@@ -16,11 +16,14 @@ const stableDiffusionStore = useStableDiffusionStore();
 const token = getToken()
 const loading = ref(false)
 
+
+
 const handleDownloadImage = () => {
   stableDiffusionStore.image ? downloadImage(stableDiffusionStore.prompt, stableDiffusionStore.image) : alert("Сначала сгенерируйте изображения для скачивания");
 };
 
 const handleSubmit = async () => {
+  console.log(token);
   if (stableDiffusionStore.prompt && stableDiffusionStore.image) {
     loading.value = true;
 

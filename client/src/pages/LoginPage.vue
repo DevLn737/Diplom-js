@@ -21,8 +21,8 @@ const handleSubmit = async () => {
       alert("Неверные данные для входа")
     }
   } catch (error) {
-    console.error(error)
-    alert(error)
+    console.log(error);
+    alert(error.response.data.msg)
   }
 }
 </script>
