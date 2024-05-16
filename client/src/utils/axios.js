@@ -3,7 +3,7 @@ import {logout} from "@/utils/auth.js"
 // import { getToken } from "@/utils/auth.js";
 
 // axios.defaults.headers.common["Authorization"] = getToken();
-axios.defaults.baseURL = "http://localhost:4000/api/";
+axios.defaults.baseURL = "server:4000/api/";
 axios.defaults.headers = {"Content-Type": "application/json"};
 
 axios.interceptors.response.use(
