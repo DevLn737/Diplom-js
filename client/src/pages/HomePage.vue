@@ -16,7 +16,7 @@ import Gallery from "@/components/Gallery.vue";
       </p>
     </div>
     <div class="mt-10">
-      <Gallery/>
+      <Gallery />
     </div>
 
 

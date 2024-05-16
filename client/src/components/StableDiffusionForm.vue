@@ -7,13 +7,11 @@ import StableDiffusionControlPanel from "@/components/StableDiffusionControlPane
 import {useStableDiffusionStore} from "@/stores/stableDiffusion.store.js";
 import Loader from "@/components/Loader.vue";
 import {preview} from "@/assets/index.js";
-import {getToken} from "@/utils/auth.js";
 import {downloadImage} from "@/utils/index.js";
 
 
 const stableDiffusionStore = useStableDiffusionStore();
 
-const token = getToken()
 const loading = ref(false)
 
 
@@ -23,16 +21,13 @@ const handleDownloadImage = () => {
 };
 
 const handleSubmit = async () => {
-  console.log(token);
   if (stableDiffusionStore.prompt && stableDiffusionStore.image) {
     loading.value = true;
 
     try {
       await axios.post(
           "images/community",
-          JSON.stringify({description: stableDiffusionStore.prompt, image: stableDiffusionStore.image.split(",")[1]}),
-          {headers: {Authorization: `Bearer ${token}`}}
-      );
+          JSON.stringify({description: stableDiffusionStore.prompt, image: stableDiffusionStore.image.split(",")[1]}));
 
 
       console.log("Пост успешно опубликован");

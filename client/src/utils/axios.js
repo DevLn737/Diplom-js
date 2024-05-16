@@ -1,10 +1,20 @@
 import axios from "axios";
-import {logout} from "@/utils/auth.js"
-// import { getToken } from "@/utils/auth.js";
+import { logout } from "@/utils/auth.js"
+import { getToken } from "@/utils/auth.js";
 
-// axios.defaults.headers.common["Authorization"] = getToken();
-axios.defaults.baseURL = "server:4000/api/";
-axios.defaults.headers = {"Content-Type": "application/json"};
+axios.defaults.baseURL = import.meta.env.VITE_SERVER_URL;
+axios.defaults.headers = { "Content-Type": "application/json" };
+
+// Получает и прикрепляет access-token ко всем запросам
+axios.interceptors.request.use(
+    (request) => {
+        request.headers['Authorization'] = `Bearer ${getToken()}`;
+        return request;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
 
 axios.interceptors.response.use(
     (response) => {

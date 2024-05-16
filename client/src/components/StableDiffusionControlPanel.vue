@@ -1,13 +1,11 @@
 <script setup>
 import axios from "axios";
 import {useStableDiffusionStore} from "@/stores/stableDiffusion.store.js";
-import {getToken} from "@/utils/auth.js"
 
 const stableDiffusionStore = useStableDiffusionStore();
 // Заглушка, модель пока что не меняется
 stableDiffusionStore.setModel("Deliberate V6(SFW)")
 
-const token = getToken()
 
 const generateImage = async () => {
   if (stableDiffusionStore.prompt && !stableDiffusionStore.isGenerated) {
@@ -17,9 +15,7 @@ const generateImage = async () => {
       const negative = stableDiffusionStore.negativePrompt ? stableDiffusionStore.negativePrompt : "[disfigured, poorly drawn], [bad : wrong] anatomy, [extra | missing | floating | disconnected] limb, mutated, blurry";
 
       const response = await axios.post("images/generate",
-          JSON.stringify({prompt: stableDiffusionStore.prompt, negative_prompt: negative}),
-          {headers: {Authorization: `Bearer ${token}`}}
-      );
+          JSON.stringify({prompt: stableDiffusionStore.prompt, negative_prompt: negative}));
 
       stableDiffusionStore.setImage(`data:image/png;base64,${response.data.image}`);
 

@@ -3,14 +3,12 @@ import { ref } from 'vue';
 import { nextTick } from 'vue';
 import axios from 'axios';
 import Loader from "@/components/Loader.vue";
-import {getToken} from "@/utils/auth"
 
 const messages = ref([])
 const message = ref('')
 const loading = ref(false)
 const chatMessages = ref([]); // Добавляем ссылку на последнее сообщение
 
-const token = getToken()
 
 // Костыль
 let messageCounter = 0
@@ -25,7 +23,7 @@ const handleSubmit = async () => {
     message.value = ""
 
     const data = { model: "llama3", messages: messages.value, stream: false, keep_alive: "2400m" }
-    const response = await axios.post("llama/chat", JSON.stringify(data), { headers: { Authorization: `Bearer ${token}` } })
+    const response = await axios.post("llama/chat", JSON.stringify(data));
 
     console.log(response);
 
