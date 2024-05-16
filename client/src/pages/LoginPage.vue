@@ -13,7 +13,7 @@ const handleSubmit = async () => {
     const response = await axios.post('auth/login', {
       username: username.value, password: password.value
     })
-
+   
     if (response.status === 200) {
       login(response.data.token)
       await router.push('/')
