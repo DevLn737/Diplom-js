@@ -15,7 +15,8 @@ export default class Config {
     public static readonly DB_NAME: string = process.env.DB_NAME;
     public static readonly DB_HOST: string = process.env.DB_HOST || 'mongodb';
     public static readonly DB_PORT: string = process.env.DB_PORT || '27017';
-
+    // !Костыль
+    public static readonly SITE_URL: string = process.env.SITE_URL || 'http://localhost:4000/';
     //STATIC
     public static readonly staticDir: string = path.resolve(BASEDIR, 'public');
 }

@@ -19,10 +19,11 @@ mongoose.connect(`mongodb://${Config.DB_HOST}:${Config.DB_PORT}/${Config.DB_NAME
 const port = 4000;
 const app = express();
 
-app.use(cors({
-    origin: ["http://localhost:80", "http://localhost:5173", "http://146.255.188.218:5173"],
-    credentials: true
-}));
+app.use(cors());
+
+// app.use(cors({
+//     origin: ["http://localhost", "http://localhost:5173", "http://146.255.188.218:5173"],
+// }));
 app.use(morgan('common'));
 app.use(compression());
 app.use(cookieParser());

@@ -2,45 +2,33 @@ version: '3.8'
 
 services:
   client:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
+    image: devln/diplom-client:1.0.0
+    container_name: client
     restart: on-failure
     ports:
       - "80:80"
-    container_name: client
-    develop:
-      watch:
-        - action: rebuild
-          path: ./client
     networks:
       - mynetwork
 
   server:
-    build:
-      context: ./server
-      dockerfile: Dockerfile
+    image: devln/diplom-server:1.0.1
+    container_name: server
     restart: on-failure
     ports:
       - "4000:4000"
     depends_on:
       - mongodb
     env_file:
-      - ./server/.env
-    container_name: server
-    develop:
-      watch:
-        - action: rebuild
-          path: ./server
+      - .env
     networks:
       - mynetwork
 
   mongodb:
     image: mongo:4.4.29
+    container_name: diplom-mongo
     restart: on-failure
     ports:
       - "27017:27017"
-    container_name: mongodb
     networks:
       - mynetwork
 

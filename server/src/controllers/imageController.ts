@@ -5,7 +5,7 @@ import { createImage } from "../helpers/imageHelpers";
 import { StatusCodes } from "http-status-codes";
 import { MD5fromBase64 } from "../helpers/cryptoHelpers";
 import { ImageModel, ImageType } from "../models/Image";
-import { BASEDIR } from "../config";
+import config, { BASEDIR } from "../config";
 import { getDateNow } from "../helpers/dateHelpers";
 import { ICreateImageResponse } from "../helpers/imageHelpers";
 
@@ -73,7 +73,8 @@ export const postCommunityImage = async (req: Request, res: Response) => {
 
     const newImage = new ImageModel({
       name: md5Hash,
-      url: "http://localhost:4000/" + relativePath,
+      // !Костыль
+      url: config.SITE_URL + relativePath,
       description,
       tags,
       type: ImageType.Public,
