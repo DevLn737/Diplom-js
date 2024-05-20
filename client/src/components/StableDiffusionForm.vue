@@ -53,11 +53,11 @@ const handleSubmit = async () => {
 
     <!--    ПРЕВЬЮ ИЗОБРАЖЕНИЯ С ОПЦИОНАЛЬНЫМИ ВОЗМОЖНОСТЬЯМИ(кнопками)    -->
     <div
-        class="relative mt-6 flex h-[312px] w-[312px] items-center justify-center rounded-lg border border-gray-300 bg-gray-50 p-3 text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+        class="relative mt-6 flex h-[312px] w-[312px] items-center justify-center rounded-lg border border-gray-300 bg-gray-50 p-3 text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-800"
     >
       <img v-if="stableDiffusionStore.image" :src="stableDiffusionStore.image" :alt="prompt"
            class="h-full w-full object-contain"/>
-      <img v-else :src="preview" alt="preview" class="h-9/12 w-9/12"/>
+      <img v-else :src="preview" alt="preview" class="h-9/12 w-9/12 dark:invert"/>
       <div v-if="stableDiffusionStore.isGenerated"
            class="absolute inset-0 z-0 flex items-center justify-center rounded-lg bg-[rgba(0,0,0,0.5)]">
         <Loader/>

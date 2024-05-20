@@ -1,25 +1,27 @@
 <script setup>
-import {RouterLink} from "vue-router";
-import {logo} from "@/assets";
+import { RouterLink } from "vue-router";
+import { logo } from "@/assets";
+import ThemeToggler from "@/components/ThemeToggler.vue";
 </script>
 
 <template>
-  <header class="z-50 sticky top-0">
-    <nav class="bg-white border-gray-200 dark:bg-gray-900">
-      <div class="w-full flex flex-wrap items-center justify-between mx-auto px-4 py-4">
-        <RouterLink :to="{name: 'home'}">
+  <header class="sticky top-0 z-50">
+    <nav class="border-gray-200 bg-white dark:bg-gray-900">
+      <div class="mx-auto flex w-full flex-wrap items-center justify-between px-4 py-4 shadow-sm dark:shadow-gray-800">
+        <RouterLink :to="{ name: 'home' }">
           <div class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img :src="logo" class="h-10" alt="Logo"/>
-            <span class="self-center text-lg font-semibold whitespace-nowrap dark:text-white">Stable <span
+            <img :src="logo" class="h-10" alt="Logo" />
+            <span class="self-center whitespace-nowrap text-lg font-semibold dark:text-white">Stable <span
                 class="text-blue-600">Diffusion</span></span>
           </div>
         </RouterLink>
 
-        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse gap-2 items-center">
+        <div class="flex items-center gap-2 space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse">
           <!--          МЕСТО ДЛЯ ПЕРЕКЛЮЧАТЕЛЯ ТЕМЫ-->
-          <RouterLink :to="{name: 'stable-diffusion'}">
+          <ThemeToggler />
+          <RouterLink :to="{ name: 'stable-diffusion' }">
             <button type="button"
-                    class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              class="rounded-lg bg-blue-600 px-4 py-2 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
               Создать
             </button>
           </RouterLink>
@@ -38,25 +40,23 @@ import {logo} from "@/assets";
           <!--            </button>-->
           <!--          </RouterLink>-->
 
-
           <!--          Burger          -->
           <button data-collapse-toggle="navbar-cta" type="button"
-                  class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                  aria-controls="navbar-cta" aria-expanded="false">
-            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                 viewBox="0 0 17 14">
+            class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden"
+            aria-controls="navbar-cta" aria-expanded="false">
+            <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M1 1h15M1 7h15M1 13h15"/>
+                d="M1 1h15M1 7h15M1 13h15" />
             </svg>
           </button>
         </div>
-        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
+        <div class="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto" id="navbar-cta">
           <ul
-              class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            class="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900 rtl:space-x-reverse">
             <li>
-              <RouterLink :to="{name: 'home'}">
+              <RouterLink :to="{ name: 'home' }">
                 <button
-                    class="disabled:text-gray-400 disabled:hover:text-gray-400 block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                  class="block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 disabled:text-gray-400 disabled:hover:text-gray-400 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:disabled:text-gray-400 dark:disabled:hover:text-gray-400 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500">
                   Главная
                 </button>
               </RouterLink>
@@ -64,23 +64,23 @@ import {logo} from "@/assets";
             <li>
               <RouterLink to="/">
                 <button disabled
-                        class="disabled:text-gray-400 disabled:hover:text-gray-400 block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                  class="block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 disabled:text-gray-400 disabled:hover:text-gray-400 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:disabled:text-gray-400 dark:disabled:hover:text-gray-400 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500">
                   Запрос
                 </button>
               </RouterLink>
             </li>
             <li>
-              <RouterLink :to="{name: 'llama'}">
+              <RouterLink :to="{ name: 'llama' }">
                 <button
-                    class="disabled:text-gray-400 disabled:hover:text-gray-400 block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                  class="block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 disabled:text-gray-400 disabled:hover:text-gray-400 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:disabled:text-gray-400 dark:disabled:hover:text-gray-400 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500">
                   LLama
                 </button>
               </RouterLink>
             </li>
             <li>
-              <RouterLink :to="{name: 'faq'}">
+              <RouterLink :to="{ name: 'faq' }">
                 <button
-                    class="disabled:text-gray-400 disabled:hover:text-gray-400 block py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                  class="block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 disabled:text-gray-400 disabled:hover:text-gray-400 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:disabled:text-gray-400 dark:disabled:hover:text-gray-400 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500">
                   FAQ
                 </button>
               </RouterLink>
@@ -92,6 +92,4 @@ import {logo} from "@/assets";
   </header>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
