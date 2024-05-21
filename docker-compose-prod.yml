@@ -18,6 +18,14 @@ services:
       - "4000:4000"
     depends_on:
       - mongodb
+    # environment:
+    #   - JWT_SECRET=super_secret
+    #   - SD_BASE_URL=localhost
+    #   - LLAMA_BASE_URL=localhost
+    #   - DB_HOST=mongodb
+    #   - DB_PORT=27017
+    #   - DB_NAME=test
+    #   - SITE_URL=localhost
     env_file:
       - .env
     networks:

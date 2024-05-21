@@ -1,0 +1,51 @@
+name: CI/CD Pipeline
+
+on:
+   push:
+      branches:
+         - main
+         - master
+
+jobs:
+   build-and-deploy:
+      runs-on: ubuntu-latest
+
+      steps:
+         - name: Checkout code
+           uses: actions/checkout@v4
+
+
+         - name: Docker Setup Buildx
+           uses: docker/setup-buildx-action@v3.3.0
+
+         - name: Docker Login
+           uses: docker/login-action@v3.1.0
+           with:
+              username: ${{ secrets.DOCKER_USERNAME }}
+              password: ${{ secrets.DOCKER_PASSWORD }}
+
+
+         - name: Build and push client image
+           run: |
+              docker buildx build --platform linux/amd64 --push -t ${{ secrets.DOCKER_USERNAME }}/diplom-client:latest ./client
+
+         - name: Build and push server image
+           run: |
+              docker buildx build --platform linux/amd64 --push -t ${{ secrets.DOCKER_USERNAME }}/diplom-server:latest ./server
+
+
+         - name: Docker Scout vulnerability scan for server
+           run: |
+              docker scout quickview ${{ secrets.DOCKER_USERNAME }}/myapp-server:latest
+           continue-on-error: true
+
+
+         - name: Deploy to production
+           uses: appleboy/ssh-action@master
+           with:
+              host: ${{ secrets.PROD_SERVER }}
+              username: ${{ secrets.PROD_USER }}
+              key: ${{ secrets.SSH_KEY }}
+              script: |
+                 cd ./site
+                 ./deploy.sh
