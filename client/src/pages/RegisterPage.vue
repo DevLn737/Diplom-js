@@ -30,8 +30,8 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <div class="max-w-md mx-auto bg-white p-10 border border-gray-200 rounded-md">
-    <h2 class="text-3xl font-bold text-center mb-6">Регистрация</h2>
+  <div class="max-w-md mx-auto bg-white p-10 border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+    <h2 class="text-3xl font-bold text-center mb-6 dark:text-white">Регистрация</h2>
     <form class="space-y-6" @submit.prevent="handleSubmit">
       <div>
         <BaseInput label="Имя пользователя" type="text" v-model="username" required/>
@@ -50,10 +50,10 @@ const handleSubmit = async () => {
       </div>
     </form>
 
-    <div class="mt-4 text-center text-gray-600">
+    <div class="mt-4 text-center text-gray-600 dark:text-gray-400">
       Уже зарегистрированы?
       <RouterLink to="/login">
-        <span class="text-blue-500">Войти</span>
+        <span class="text-blue-500 dark:text-blue-400">Войти</span>
       </RouterLink>
     </div>
 

@@ -1,9 +1,12 @@
 <script setup>
-import {ref} from "vue";
+import { ref } from "vue";
 import router from "@/router/index.js";
 import axios from 'axios'
 import BaseInput from "@/components/BaseInput.vue";
-import {login} from "@/utils/auth.js";
+import { login } from "@/utils/auth.js";
+import { useAuthStore } from "@/stores/auth.store"
+
+const authStore = useAuthStore()
 
 const username = ref('')
 const password = ref('')
@@ -16,6 +19,8 @@ const handleSubmit = async () => {
 
     if (response.status === 200) {
       login(response.data.token)
+      // !Костыль, переделать после нормальной системы авторизации
+      authStore.isLoggedIn = true
       await router.push('/')
     } else {
       alert("Неверные данные для входа")
@@ -28,27 +33,27 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <div class="max-w-md mx-auto bg-white p-10 border border-gray-200 rounded-md">
-    <h2 class="text-3xl font-bold text-center mb-6">Войти</h2>
+  <div class="max-w-md mx-auto bg-white p-10 border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700">
+    <h2 class="text-3xl font-bold text-center mb-6 dark:text-white">Войти</h2>
     <form class="space-y-6" @submit.prevent="handleSubmit">
       <div>
-        <BaseInput label="Имя пользователя" v-model="username" type="text" required/>
+        <BaseInput label="Имя пользователя" v-model="username" type="text" required />
       </div>
       <div>
-        <BaseInput label="Пароль" v-model="password" type="password" required/>
+        <BaseInput label="Пароль" v-model="password" type="password" required />
       </div>
       <div>
         <button type="submit"
-                class="w-full bg-gradient-to-br from-blue-500 to-blue-600 text-white px-4 py-2 rounded-md shadow-sm hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+          class="w-full bg-gradient-to-br from-blue-500 to-blue-600 text-white px-4 py-2 rounded-md shadow-sm hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
           Войти
         </button>
       </div>
     </form>
 
-    <div class="mt-4 text-center text-gray-600">
+    <div class="mt-4 text-center text-gray-600 dark:text-gray-400">
       Ещё не зарегистрированы?
       <RouterLink to="/register">
-        <span class="text-blue-500">Присоединяйтесь!</span>
+        <span class="text-blue-500 dark:text-blue-400">Присоединяйтесь!</span>
       </RouterLink>
     </div>
 
