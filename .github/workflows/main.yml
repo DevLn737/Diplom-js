@@ -42,6 +42,7 @@ jobs:
 
          - name: Deploy to production
            uses: appleboy/ssh-action@master
+           timeout-minutes: 40
            with:
               host: ${{ secrets.PROD_SERVER }}
               username: ${{ secrets.PROD_USER }}
