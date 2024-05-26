@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import router from "@/router/index.js";
 import axios from "axios";
-import BaseInput from "@/components/BaseInput.vue";
+import BaseInput from "@/components/UI/BaseInput.vue";
 import { login } from "@/utils/auth.js";
 import { useAuthStore } from "@/stores/auth.store";
 

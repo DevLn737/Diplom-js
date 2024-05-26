@@ -9,7 +9,7 @@ import {
   FwbNavbarLink,
   FwbNavbarLogo,
 } from "flowbite-vue";
-import ThemeToggler from "@/components/ThemeToggler.vue";
+import ThemeToggler from "@/components/UI/ThemeToggler.vue";
 import { useAuthStore } from "@/stores/auth.store";
 import { logo } from "@/assets";
 

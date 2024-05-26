@@ -1,6 +1,6 @@
 <script setup>
-import Gallery from "@/components/Gallery.vue";
-import StableDiffusionForm from "@/components/GeneratorForm.vue";
+import Gallery from "@/components/Gallery/Gallery.vue";
+import StableDiffusionForm from "@/components/Generator/GeneratorForm.vue";
 import { FwbImg } from "flowbite-vue";
 </script>
 

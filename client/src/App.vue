@@ -2,8 +2,8 @@
 import { onMounted } from "vue";
 import { RouterView } from "vue-router";
 import { initFlowbite } from "flowbite";
-import TheHeader from "@/components/TheHeader.vue";
-import TheFooter from "@/components/TheFooter.vue";
+import TheHeader from "@/components/Layouts/TheHeader.vue";
+import TheFooter from "@/components/Layouts/TheFooter.vue";
 onMounted(async () => {
   initFlowbite();
 });

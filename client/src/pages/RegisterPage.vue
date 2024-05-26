@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import router from "@/router/index.js";
-import BaseInput from "@/components/BaseInput.vue";
+import BaseInput from "@/components/UI/BaseInput.vue";
 import axios from "axios";
 
 const email = ref("");

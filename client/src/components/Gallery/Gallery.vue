@@ -1,9 +1,9 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import axios from "axios";
-import GallerySearchField from "@/components/GallerySearchField.vue";
-import GalleryGrid from "@/components/GalleryGrid.vue";
-import Loader from "@/components/Loader.vue";
+import GallerySearchField from "@/components/Gallery/GallerySearchField.vue";
+import GalleryGrid from "@/components/Gallery/GalleryGrid.vue";
+import Loader from "@/components/UI/Loader.vue";
 
 import { FwbTab, FwbTabs } from "flowbite-vue";
 const activeTab = ref("first");

@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { nextTick } from "vue";
 import axios from "axios";
-import Loader from "@/components/Loader.vue";
+import Loader from "@/components/UI/Loader.vue";
 
 const messages = ref([]);
 const message = ref("");
