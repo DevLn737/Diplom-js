@@ -5,6 +5,8 @@ import GallerySearchField from "@/components/GallerySearchField.vue";
 import GalleryGrid from "@/components/GalleryGrid.vue";
 import Loader from "@/components/Loader.vue";
 
+import { FwbTab, FwbTabs } from "flowbite-vue";
+const activeTab = ref("first");
 
 const loading = ref(false);
 const allPosts = ref([]);
@@ -13,20 +15,23 @@ const searchText = ref("");
 const searchedResults = ref([]);
 const searchTimeout = ref(null);
 
-
 const handleSearchChange = () => {
   clearTimeout(searchTimeout.value);
 
   searchTimeout.value = setTimeout(async () => {
     const searchResultByUsername = allPosts.value.filter((post) =>
-      post.owner.username.toLowerCase().includes(searchText.value.toLowerCase())
+      post.owner.username
+        .toLowerCase()
+        .includes(searchText.value.toLowerCase()),
     );
 
     const searchResultByDescription = allPosts.value.filter((post) =>
-      post.description.toLowerCase().includes(searchText.value.toLowerCase())
+      post.description.toLowerCase().includes(searchText.value.toLowerCase()),
     );
 
-    searchedResults.value = searchResultByUsername.concat(searchResultByDescription);
+    searchedResults.value = searchResultByUsername.concat(
+      searchResultByDescription,
+    );
   }, 500);
 };
 
@@ -52,34 +57,41 @@ onMounted(async () => {
 </script>
 
 <template>
-  <GallerySearchField @input="handleSearchChange" v-model="searchText" label="Поиск публикации"
-                      placeholder="Поиск по тегам, автору, названию" />
+  <fwb-tabs v-model="activeTab" class="p-6">
+    <fwb-tab name="first" title="👀 Сообщество">
+      <GallerySearchField
+        @input="handleSearchChange"
+        v-model="searchText"
+        label="Поиск публикации"
+        placeholder="Поиск по тегам, автору, названию"
+      />
 
-  <div class="mt-10">
-    <div v-if="loading" class="flex items-center justify-center">
-      <Loader />
-    </div>
+      <div class="mt-10">
+        <div v-if="loading" class="flex items-center justify-center">
+          <Loader />
+        </div>
 
-    <template v-else>
-      <template v-if="searchText && searchedResults.length === 0">
-        <h2 class="mb-3 text-xl font-medium text-[#666e75]">
-          Поиск не дал результатов
-        </h2>
-      </template>
+        <template v-else>
+          <template v-if="searchText && searchedResults.length === 0">
+            <h2 class="mb-3 text-xl font-medium text-[#666e75]">
+              Поиск не дал результатов
+            </h2>
+          </template>
 
-      <template v-else-if="allPosts.length === 0">
-        <h2 class="mb-3 text-xl font-medium text-[#666e75]">
-          Постов пока что нету
-        </h2>
-      </template>
+          <template v-else-if="allPosts.length === 0">
+            <h2 class="mb-3 text-xl font-medium text-[#666e75]">
+              Постов пока что нету
+            </h2>
+          </template>
 
-      <template v-else>
-        <GalleryGrid :posts="searchText ? searchedResults: allPosts" />
-      </template>
-    </template>
-  </div>
+          <template v-else>
+            <GalleryGrid :posts="searchText ? searchedResults : allPosts" />
+          </template>
+        </template>
+      </div>
+    </fwb-tab>
+    <fwb-tab name="second" title="🎨 Моя галерея"> seconds </fwb-tab>
+  </fwb-tabs>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

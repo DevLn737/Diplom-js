@@ -1,8 +1,37 @@
+@import '../node_modules/flowbite-vue/dist/index.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
-body {
-    font-family: "system-ui","Inter",sans-serif;
+html {
+    background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
+
+body {
+    font-family: "system-ui", "Inter", sans-serif;
+}
+
+
+
+body::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgba(172, 194, 234, 0.5);
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+
+body::-webkit-scrollbar-track {
+    display: block;
+    width: 6px;
+    background: transparent;
+}
+
+.bg-radial-blue {
+    background: radial-gradient(80% 70% at 0px 0px, rgba(28, 100, 242, 0.38) 9.34%, rgba(0, 0, 0, 0) 100%), rgb(18, 24, 37);
+  }

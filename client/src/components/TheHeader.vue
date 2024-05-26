@@ -1,18 +1,52 @@
 <script setup>
+import { ref, onMounted, onUnmounted } from "vue";
 import { RouterLink } from "vue-router";
-import { logo } from "@/assets";
+import router from "@/router";
+import {
+  FwbButton,
+  FwbNavbar,
+  FwbNavbarCollapse,
+  FwbNavbarLink,
+  FwbNavbarLogo,
+} from "flowbite-vue";
 import ThemeToggler from "@/components/ThemeToggler.vue";
-import { useAuthStore } from '@/stores/auth.store';
+import { useAuthStore } from "@/stores/auth.store";
+import { logo } from "@/assets";
 
 const authStore = useAuthStore();
 
+const isScrolled = ref(false);
+const theme = ref(localStorage.getItem("color-theme") || "dark");
+
+const updateTheme = () => {
+  theme.value = localStorage.getItem("color-theme") || "dark";
+};
+
+const handleScroll = () => {
+  if (window.scrollY > 50) {
+    isScrolled.value = true;
+  } else {
+    isScrolled.value = false;
+  }
+};
+
 const handleLogout = () => {
   authStore.logout();
+  router.push({ name: "home" });
 };
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+  updateTheme();
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
 
 <template>
-  <header class="sticky top-0 z-50">
+  <!-- <header class="sticky top-0 z-50">
     <nav class="border-gray-200 bg-white dark:bg-gray-900">
       <div class="mx-auto flex w-full flex-wrap items-center justify-between px-4 py-4 shadow-sm dark:shadow-gray-800">
         <RouterLink :to="{ name: 'home' }">
@@ -24,16 +58,7 @@ const handleLogout = () => {
         </RouterLink>
 
         <div class="flex items-center gap-2 space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse">
-          <!-- Кнопки для неавторизованного пользователя -->
-
-          <!--          МЕСТО ДЛЯ ПЕРЕКЛЮЧАТЕЛЯ ТЕМЫ-->
           <ThemeToggler />
-          <RouterLink :to="{ name: 'stable-diffusion' }">
-            <button type="button"
-              class="rounded-lg bg-blue-600 px-4 py-2 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-              Создать
-            </button>
-          </RouterLink>
           <button v-if="authStore.isLoggedIn" @click="handleLogout" type="button"
             class="focus:outline-none text-white bg-red-700 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
             Выйти
@@ -47,7 +72,7 @@ const handleLogout = () => {
           </RouterLink>
 
           <!--          Burger          -->
-          <button data-collapse-toggle="navbar-cta" type="button"
+  <!-- <button data-collapse-toggle="navbar-cta" type="button"
             class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden"
             aria-controls="navbar-cta" aria-expanded="false">
             <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
@@ -95,7 +120,89 @@ const handleLogout = () => {
         </div>
       </div>
     </nav>
-  </header>
+  </header> -->
+  <div
+    class="header sticky left-0 top-0 z-50 bg-gray-50 dark:bg-gray-900"
+    :class="[{ scrolled: isScrolled, dark: theme === 'dark' }]"
+  >
+    <fwb-navbar class="mx-auto max-w-7xl bg-gray-50 dark:bg-gray-900">
+      <template #logo>
+        <router-link :to="{ name: 'home' }">
+          <fwb-navbar-logo alt="Flowbite logo" :image-url="logo" link="#">
+            <span
+              class="self-center whitespace-nowrap text-lg font-semibold dark:text-white"
+            >
+              Stable
+              <span class="text-blue-600">Diffusion</span>
+            </span>
+          </fwb-navbar-logo>
+        </router-link>
+      </template>
+
+      <template #default="{ isShowMenu }">
+        <fwb-navbar-collapse :is-show-menu="isShowMenu">
+          <router-link :to="{ name: 'home' }">
+            <fwb-navbar-link is-active> Главная </fwb-navbar-link>
+          </router-link>
+
+          <router-link :to="{ name: 'llama' }">
+            <fwb-navbar-link> AI Ассистент </fwb-navbar-link>
+          </router-link>
+
+          <fwb-navbar-link disabled> Блок </fwb-navbar-link>
+        </fwb-navbar-collapse>
+      </template>
+
+      <template #right-side>
+        <div class="flex items-center">
+          <ThemeToggler @click="updateTheme" class="me-3" />
+
+          <div class="flex gap-2" v-if="!authStore.isLoggedIn">
+            <router-link :to="{ name: 'login' }">
+              <fwb-button color="dark" outline class="rounded">
+                Войти
+              </fwb-button>
+            </router-link>
+
+            <router-link :to="{ name: 'register' }">
+              <fwb-button
+                class="rounded border-[1px] border-transparent bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-500"
+              >
+                Начать
+              </fwb-button>
+            </router-link>
+          </div>
+
+          <div v-else>
+            <fwb-button
+              @click="handleLogout"
+              gradient="purple-pink"
+              class="rounded border-[1px] border-transparent"
+            >
+              Выйти
+            </fwb-button>
+          </div>
+        </div>
+      </template>
+    </fwb-navbar>
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.header {
+  transition:
+    background-color 0.3s,
+    border-bottom 0.3s,
+    backdrop-filter 0.3s;
+}
+
+.header.scrolled {
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.header.scrolled.dark {
+  background-color: rgb(17, 24, 39);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+</style>

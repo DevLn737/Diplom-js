@@ -12,7 +12,7 @@ export const surpriseMePrompts = [
   "a pencil and watercolor drawing of a bright city in the future with flying cars",
   "a sunlit indoor lounge area with a pool with clear water and another pool with translucent pastel pink water, next to a big window, digital art",
   "a fortune-telling shiba inu reading your fate in a giant hamburger, digital art",
-  "\"a sea otter with a pearl earring\" by Johannes Vermeer",
+  '"a sea otter with a pearl earring" by Johannes Vermeer',
   "an oil pastel drawing of an annoyed cat in a spaceship",
   "a painting of a fox in the style of Starry Night",
   "a bowl of soup that looks like a monster, knitted out of wool",
@@ -44,5 +44,5 @@ export const surpriseMePrompts = [
   "Dracula walking down the street of New York City in the 1920s, black and white photography",
   "Synthwave aeroplane",
   "A man wanders through the rainy streets of Tokyo, with bright neon signs, 50mm",
-  "A Space Shuttle flying above Cape Town, digital art"
+  "A Space Shuttle flying above Cape Town, digital art",
 ];
