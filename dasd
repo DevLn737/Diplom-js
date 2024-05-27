@@ -1,0 +1,187 @@
+[33mcommit 1c33f432a050fcc37f4f09cd77a25d82ff0e966d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdev[m[33m, [m[1;31morigin/dev[m[33m)[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Sun May 26 22:31:03 2024 +0400
+
+    Организация компонентов по отдельным директориям(UI, Layouts и т.д)
+
+[33mcommit cbf574feafc60d76b5febaca7a65d6d3ffb21fc9[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Sun May 26 22:18:56 2024 +0400
+
+    Исправлена ошибка пути до конфига nginx в Dockerfile
+
+[33mcommit 73adbdaf412016b8798e79d9883fa9ac6637a759[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Sun May 26 22:02:59 2024 +0400
+
+    Глобальный рефакторинг фронта.(пока что не рабочий)
+
+[33mcommit c2fd57e02e1bdaacd1735c8008976b074830c551[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Wed May 22 18:41:43 2024 +0400
+
+    CI/CD fix timeout deploy error
+
+[33mcommit 0a9d431b1a8a2709d491d9f96b3b00a925b60089[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Wed May 22 18:20:40 2024 +0400
+
+    test
+
+[33mcommit 664fab9c71d951a7423214093e9044e640f92015[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Tue May 21 20:31:30 2024 +0400
+
+    '
+
+[33mcommit a5dd50cdd746bae17a35b9c1d885983d5d65b434[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Tue May 21 19:05:41 2024 +0400
+
+    CI/CD Retest
+
+[33mcommit e9639ebe6a074be75495be01ec89ce22d802a854[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Tue May 21 18:44:41 2024 +0400
+
+    Add CI/CD pipeline
+
+[33mcommit 9965448ca4be70f59f03927226d9854e9c6653af[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Mon May 20 22:41:59 2024 +0400
+
+    Добавлена возможность переключить тему на тёмную
+
+[33mcommit 156af97f41fe9733798090831e5f2878627b3a92[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Sun May 19 21:04:46 2024 +0400
+
+    Конфигурация для полноценного деплоя всего проекта с помощью docker
+
+[33mcommit 5723fbfcddbdef2ce470a7dacb0edfe90e2cfece[m
+Author: devln <esprgv@gmail.com>
+Date:   Thu May 16 22:06:03 2024 +0400
+
+    Исправления на клиенте и сервере env файлов, настройка axios на клиенте
+
+[33mcommit d38ee4d9c23b292d4856f095ff7cbe00bc08feb7[m
+Author: DevLn <62370135+DevLn737@users.noreply.github.com>
+Date:   Thu May 16 18:41:38 2024 +0400
+
+    Delete clientOld directory
+
+[33mcommit 21556fb5f7ab40ba91810645ca3ecdcdd5fbaf0a[m
+Author: devln <esprgv@gmail.com>
+Date:   Thu May 16 18:39:46 2024 +0400
+
+    Revert "Удалён старый фронт на реакте"
+    
+    This reverts commit de653af1dd576f0221502d6ebdc91fdd37d24a46.
+
+[33mcommit de653af1dd576f0221502d6ebdc91fdd37d24a46[m
+Author: devln <esprgv@gmail.com>
+Date:   Thu May 16 18:36:58 2024 +0400
+
+    Удалён старый фронт на реакте
+
+[33mcommit b96120ca0ae0cecd79e6a1b553845bdf1da4527a[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Sun May 12 19:58:19 2024 +0400
+
+    global: Релиз 1.0.0(не все файлы запушились)
+
+[33mcommit 1cba26ec124da9ccd1084d1298d94d6b4f57cb3c[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Sun May 12 19:55:55 2024 +0400
+
+    global: Релиз версия 1.0.0
+
+[33mcommit 54b24dc7e4ea0c143d81e7902f7d4b8de334a572[m
+Author: devln <esprgv@gmail.com>
+Date:   Sat May 11 18:59:48 2024 +0400
+
+    client: Страница FAQ, начало реализации и внедрения llama3 чата
+
+[33mcommit 3f72e34d90e984beadec3257547666538874806e[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Fri May 10 19:44:29 2024 +0400
+
+    global: Полный рефакторинг клиента, исправлены ошибки на серверe, исправлены конфиги докер файлов
+
+[33mcommit 02d2b3535a062fe3173680b435f86ba9c413dbef[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Tue May 7 15:43:27 2024 +0400
+
+    -
+
+[33mcommit f5ef4246d8834dbf541624eb9e6d8dbf4cce1f6c[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Tue May 7 15:40:20 2024 +0400
+
+    -
+
+[33mcommit 0a8d6c446896a167cda56a93a017180d0bb758be[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Sun May 5 21:00:51 2024 +0400
+
+    client: Добавлен pinia для управления состоянием
+
+[33mcommit 1e3d0209f5ad0e661056c1c87342003c3e3495d9[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Sat May 4 20:01:43 2024 +0400
+
+    global: Написан докер файлы и docker-compose файл для полного поднятия проекта
+
+[33mcommit 85e96521b762358efd5d41234f1adc7e49af3cbe[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Sat May 4 19:24:01 2024 +0400
+
+    server: Маршрут для тестов, докеризация
+
+[33mcommit 4d9bc5f04e4eb82541fbf80218a39a697b039bcd[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Sat May 4 18:49:31 2024 +0400
+
+    global: Переименование frontend и backend в client и server. Frontend полностью переписан на vue.js
+
+[33mcommit 18df1b76a62c07bb43b4a6d806e3ca9548e5fa41[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Wed May 1 13:55:34 2024 +0400
+
+    frontend: Базовый фронтенд на React.js
+
+[33mcommit 723257291bc8f96dacd96ac960d3b799db46c57c[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Tue Apr 30 14:38:54 2024 +0400
+
+    backend: Упорядочивание импортов
+
+[33mcommit 30226b3a84f71bc6b1004b013373f18e9e7db1bf[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Tue Apr 30 14:33:56 2024 +0400
+
+    backend: Реализация функционала публикации и получения изображений сообщества, раздача статики
+
+[33mcommit 1c6c3d7b5e91ccb4e3177fc84fb2acc2690c11ca[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Mon Apr 29 20:24:20 2024 +0400
+
+    Рефакторинг кода
+
+[33mcommit cba8b724d4c373fffda72377b65ec0d6bf5bbd3a[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Tue Apr 23 22:16:17 2024 +0400
+
+    backend: Реализация маршрута для генерации Stable Diffusion(txt2img)
+
+[33mcommit 0e9b0be94a74b3c8d13b766a9ac46f89f944088c[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Sat Apr 20 22:55:12 2024 +0400
+
+    Добавил базовую систему аутентификации и авторизации
+
+[33mcommit 481d5806900cb3482acbb1f42f20c5304ff12413[m
+Author: Ruslan <esprgv@gmail.com>
+Date:   Wed Apr 17 22:29:02 2024 +0400
+
+    Initial commit

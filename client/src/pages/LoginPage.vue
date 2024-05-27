@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from "vue";
-import router from "@/router/index.js";
+import router from "@/router";
 import axios from "axios";
 import BaseInput from "@/components/UI/BaseInput.vue";
 import { login } from "@/utils/auth.js";
-import { useAuthStore } from "@/stores/auth.store";
+import { useAuthStore } from "@/stores";
 
 const authStore = useAuthStore();
 

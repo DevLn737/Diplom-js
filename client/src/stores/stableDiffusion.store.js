@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { surpriseMePrompts } from "../constants/index";
 
-export const useStableDiffusionStore = defineStore({
+const useStableDiffusionStore = defineStore({
   id: "stableDiffusion",
   state: () => ({
     model: null,
@@ -31,3 +31,6 @@ export const useStableDiffusionStore = defineStore({
     },
   },
 });
+
+
+export default useStableDiffusionStore

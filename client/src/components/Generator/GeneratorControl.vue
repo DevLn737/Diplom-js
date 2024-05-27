@@ -3,7 +3,7 @@ import axios from "axios";
 import { FwbTextarea, FwbButton } from "flowbite-vue";
 import { preview } from "@/assets";
 import Loader from "./UI/Loader.vue";
-import { useStableDiffusionStore } from "@/stores/stableDiffusion.store.js";
+import { useStableDiffusionStore } from "@/stores";
 </script>
 
 <template>

@@ -1,10 +1,11 @@
 <script setup>
 import Gallery from "@/components/Gallery/Gallery.vue";
-import StableDiffusionForm from "@/components/Generator/GeneratorForm.vue";
+import GeneratorForm from "@/components/Generator/GeneratorForm.vue";
 import { FwbImg } from "flowbite-vue";
 </script>
 
 <template>
+  <!--  ВЫНЕСТИ В КОМПОНЕНТ THE HERO -->
   <section class="mx-auto mt-10 max-w-7xl">
     <div class="col-md-10 col-lg-9 col-xxl-10 text-center">
       <h1
@@ -29,7 +30,7 @@ import { FwbImg } from "flowbite-vue";
 
   <section
     class="mx-auto mt-16 max-w-7xl">
-    <StableDiffusionForm />
+    <GeneratorForm />
   </section>
 
   <section class="mx-auto mt-16 max-w-7xl">
