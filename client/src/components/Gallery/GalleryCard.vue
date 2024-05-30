@@ -1,6 +1,6 @@
 <script setup>
 import { download } from "@/assets";
-import { downloadImage } from "@/utils";
+import { downloadImage } from "@/utils/misc";
 
 defineProps({
   _id: { type: String },

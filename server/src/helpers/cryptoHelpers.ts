@@ -17,3 +17,14 @@ export function MD5fromBase64(base64String: string): string {
     hash.update(buffer);
     return hash.digest('hex');
 }
+
+export function base64ToArrayBuffer(base64: string): ArrayBuffer {
+    let binaryString = atob(base64);
+    let bytes = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+    }
+    return bytes.buffer;
+}
+
+

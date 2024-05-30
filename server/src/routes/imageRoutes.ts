@@ -7,7 +7,7 @@ import { imageGenerationValidation, imageDataValidation } from '../validations';
 export const router = Router();
 
 // Генерируем изображение на основе текстового промта
-router.post('/generate', authMiddleware, imageGenerationValidation, handleValidationErrors, imageController.generateImage);
+router.post('/generate', imageGenerationValidation, handleValidationErrors, imageController.generateImage);
 
 // Общественная галерея
 router.get('/community', imageController.getCommunityImages);

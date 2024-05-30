@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { surpriseMePrompts } from "../constants/index";
+import { surpriseMePrompts } from "@/constants";
 
 const useStableDiffusionStore = defineStore({
   id: "stableDiffusion",
@@ -23,7 +23,7 @@ const useStableDiffusionStore = defineStore({
       this.prompt = null;
       this.negativePrompt = null;
     },
-    setRandomPrompt() {
+    getRandomPrompt() {
       const randomIndex = Math.floor(Math.random() * surpriseMePrompts.length);
       const randomPrompt = surpriseMePrompts[randomIndex];
       if (randomPrompt === this.prompt) return this.getRandomPrompt();
@@ -32,5 +32,4 @@ const useStableDiffusionStore = defineStore({
   },
 });
 
-
-export default useStableDiffusionStore
+export default useStableDiffusionStore;
